@@ -21,11 +21,20 @@ Ice is a powerful menu bar management tool. While its primary function is hiding
     <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;">
 </a>
 
+> [!IMPORTANT]
+> This fork is maintained for **macOS 26 (macOS 15.4+)** compatibility.
+>
+> The upstream `0.11.12` release crashes on macOS 26 due to removed private APIs. If you are running macOS 26, please download the [latest release from this fork](https://github.com/lulucatdev/Ice/releases/latest) instead.
+
 ## Install
 
 ### Manual Installation
 
 Download the "Ice.zip" file from the [latest release](https://github.com/jordanbaird/Ice/releases/latest) and move the unzipped app into your `Applications` folder.
+
+### macOS 26 Compatible Release
+
+For **macOS 26 (macOS 15.4+)** users, download `Ice.dmg` from the [latest release in this fork](https://github.com/lulucatdev/Ice/releases/latest), open it, and drag `Ice.app` into your `Applications` folder.
 
 ### Homebrew
 
