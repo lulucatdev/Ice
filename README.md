@@ -5,7 +5,32 @@
 
 Ice is a powerful menu bar management tool. While its primary function is hiding and showing menu bar items, it aims to cover a wide variety of additional features to make it one of the most versatile menu bar tools available.
 
-![Banner](https://github.com/user-attachments/assets/4423085c-4e4b-4f3d-ad0f-90a217c03470)
+## Fork Progress
+
+This fork was created to resolve the **macOS 26 (macOS 15.4+) crash issue** where the upstream `0.11.12` release would immediately crash with `EXC_BREAKPOINT` upon clicking the menu bar icon.
+
+### What We Fixed
+
+| Step | Status | Details |
+|------|--------|---------|
+| Root cause analysis | ✅ Done | Identified that macOS 26 removed/changed private window-server APIs (`CGSGetProcessMenuBarWindowList`, etc.) used by Ice 0.11.12 |
+| Code fix | ✅ Done | Migrated to upstream's `macos-26` branch, which replaces private APIs with a new `MenuBarItemService` XPC helper |
+| Code signing | ✅ Done | Signed app and DMG with `Developer ID Application: Shenzhen Luke Education Technology Co., Ltd.` |
+| Apple notarization | ✅ Done | DMG successfully notarized and stapled (`source=Notarized Developer ID`) |
+| GitHub Release | ✅ Done | Pre-release [`0.11.13-dev.2a-macos26`](https://github.com/lulucatdev/Ice/releases/tag/0.11.13-dev.2a-macos26) published with `Ice.dmg` |
+| README update | ✅ Done | Added macOS 26 installation and compatibility notes |
+| Merge to `main` | ✅ Done | `fix-macos-26` branch merged into `main` |
+
+### macOS 26 Compatible Release
+
+For **macOS 26 (macOS 15.4+)** users, download `Ice.dmg` from the [latest release in this fork](https://github.com/lulucatdev/Ice/releases/latest), open it, and drag `Ice.app` into your `Applications` folder.
+
+### Known Limitations
+
+- This is a **pre-release / development build** based on upstream's `macos-26` branch. Some features may still be stabilizing.
+- The bundled Sparkle auto-updater may still point to the original upstream release channel.
+
+---
 
 [![Download](https://img.shields.io/badge/download-latest-brightgreen?style=flat-square)](https://github.com/jordanbaird/Ice/releases/latest)
 ![Platform](https://img.shields.io/badge/platform-macOS-blue?style=flat-square)
@@ -32,10 +57,6 @@ Ice is a powerful menu bar management tool. While its primary function is hiding
 
 Download the "Ice.zip" file from the [latest release](https://github.com/jordanbaird/Ice/releases/latest) and move the unzipped app into your `Applications` folder.
 
-### macOS 26 Compatible Release
-
-For **macOS 26 (macOS 15.4+)** users, download `Ice.dmg` from the [latest release in this fork](https://github.com/lulucatdev/Ice/releases/latest), open it, and drag `Ice.app` into your `Applications` folder.
-
 ### Homebrew
 
 Install Ice using the following command:
@@ -43,27 +64,6 @@ Install Ice using the following command:
 ```sh
 brew install --cask jordanbaird-ice
 ```
-
-## Fork Progress
-
-This fork was created to resolve the **macOS 26 (macOS 15.4+) crash issue** where the upstream `0.11.12` release would immediately crash with `EXC_BREAKPOINT` upon clicking the menu bar icon.
-
-### What We Fixed
-
-| Step | Status | Details |
-|------|--------|---------|
-| Root cause analysis | ✅ Done | Identified that macOS 26 removed/changed private window-server APIs (`CGSGetProcessMenuBarWindowList`, etc.) used by Ice 0.11.12 |
-| Code fix | ✅ Done | Migrated to upstream's `macos-26` branch, which replaces private APIs with a new `MenuBarItemService` XPC helper |
-| Code signing | ✅ Done | Signed app and DMG with `Developer ID Application: Shenzhen Luke Education Technology Co., Ltd.` |
-| Apple notarization | ✅ Done | DMG successfully notarized and stapled (`source=Notarized Developer ID`) |
-| GitHub Release | ✅ Done | Pre-release [`0.11.13-dev.2a-macos26`](https://github.com/lulucatdev/Ice/releases/tag/0.11.13-dev.2a-macos26) published with `Ice.dmg` |
-| README update | ✅ Done | Added macOS 26 installation and compatibility notes |
-| Merge to `main` | ✅ Done | `fix-macos-26` branch merged into `main` |
-
-### Known Limitations
-
-- This is a **pre-release / development build** based on upstream's `macos-26` branch. Some features may still be stabilizing.
-- The bundled Sparkle auto-updater may still point to the original upstream release channel.
 
 ## Features/Roadmap
 
