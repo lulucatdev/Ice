@@ -44,6 +44,27 @@ Install Ice using the following command:
 brew install --cask jordanbaird-ice
 ```
 
+## Fork Progress
+
+This fork was created to resolve the **macOS 26 (macOS 15.4+) crash issue** where the upstream `0.11.12` release would immediately crash with `EXC_BREAKPOINT` upon clicking the menu bar icon.
+
+### What We Fixed
+
+| Step | Status | Details |
+|------|--------|---------|
+| Root cause analysis | ✅ Done | Identified that macOS 26 removed/changed private window-server APIs (`CGSGetProcessMenuBarWindowList`, etc.) used by Ice 0.11.12 |
+| Code fix | ✅ Done | Migrated to upstream's `macos-26` branch, which replaces private APIs with a new `MenuBarItemService` XPC helper |
+| Code signing | ✅ Done | Signed app and DMG with `Developer ID Application: Shenzhen Luke Education Technology Co., Ltd.` |
+| Apple notarization | ✅ Done | DMG successfully notarized and stapled (`source=Notarized Developer ID`) |
+| GitHub Release | ✅ Done | Pre-release [`0.11.13-dev.2a-macos26`](https://github.com/lulucatdev/Ice/releases/tag/0.11.13-dev.2a-macos26) published with `Ice.dmg` |
+| README update | ✅ Done | Added macOS 26 installation and compatibility notes |
+| Merge to `main` | ✅ Done | `fix-macos-26` branch merged into `main` |
+
+### Known Limitations
+
+- This is a **pre-release / development build** based on upstream's `macos-26` branch. Some features may still be stabilizing.
+- The bundled Sparkle auto-updater may still point to the original upstream release channel.
+
 ## Features/Roadmap
 
 ### Menu bar item management
